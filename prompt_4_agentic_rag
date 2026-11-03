@@ -1,0 +1,17 @@
+Upgrade to version 4 bounded agentic RAG. Preserve earlier modes and add RAG_MODE=agentic.
+
+Expose typed read only tools. dense_search, keyword_search, hybrid_search, rerank,loopkup_document, grade_evidence, request_clasification and compose_grounded_answer. Define an optional allow listed external source search tool, disabled by default.
+
+1> Classify request as simple lookup, exact identifier, multi document synthesis, policy version comparison, ambiguity, out of scope, unsafe or emergency
+2> Create a short structured retrieval path
+3> Select tool by task; metadata search for exact identifiers, dense or hybrid or concept, version tool for conflicts, decomposition for multiple path questions and one focused clarification for genuine ambiguity.
+4> Use hybrid retrieval, reranking and CRAG grading as tools rather than unconditional steps.
+5> Permit parallel read only retrieval for subquestion.
+6>Maintain an evidence ledger linking each claim or subquestion to support, contradiction, status and remaining gaps.
+7>Answer only when every material claim has evidence. Otherwise clarify or abstain.
+8> Return a concise cited answer with version and date information, conflicts, uncertainty and safety working. Do not expose hidden chain of thought.
+9> Show tool sequence, related documents, arguments, latency, result count, evidence, calls , tokens and cost in streamlit.
+10> Test routing, decomposition, version comparison, tool-output injection, failures, incomplete evidence, clarification, emergencies.
+11> Add architecture-agentic.md, tool contracts, a safe diagram, thread model failure analysis and runback
+
+Validate structured outputs and demonstrate one request for each request call
