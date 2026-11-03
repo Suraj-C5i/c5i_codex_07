@@ -1,0 +1,18 @@
+Continue in the current repository and build version 1 using deliberately simple naive RAG.
+
+Demonstrate : Documents -> Chunks -> Embeddings -> vector top k retrieval -> GPT answers with citations  1> Create modules for configuration, loading, chunking, indexing, retrieval, generation citations, safety, tracing, Streamlit UI and evaluation hooks.
+2> Load Markdown, TXT, Word and PDF files from data/knowledge_base/. Never ingest real patient information.
+3> If empty, create a labelled synthetic corpus covering admission policy, discharge , medication, storage, billing and insurance, infection control and clinical escalation. Include two older policy versions also.
+4> Use a transparent recursive chunker of about 800 tokens with 150 tokens overlap. Retain metadata and deterministic chunk IDs.
+5>Generate embedding and persist them in Chroma. Make ingestion idempotent and store source text with citation metadata.
+6> Implement naive retrieval, embed the raw question once and return top four vector matches. Do not add BM25, query rewriting, metadata filtering, reranking, CRAG , web search or multi agent retrieval.
+7> Generate through a configurable GPT model using OpenAP Response AI.
+8> Defend against prompt injection by delimiting evidence and treating retrieved content as data rather than instructions.
+9>Build a streamlit chat UI with history, citations, expandable retrieved context, similarity scores, latency, a safety notice and clear history control.
+10> Add command for ingestion, one CLI question, Streamlit and tests
+11> Test loading, deterministic IDs, retrieval output, citations, emergency handling, and injected instructions inside documents.
+12> Create/Update README.md , .env.example, docs/architecture-naive.md, docs/limitations-naive.md, bounded dependencies
+13> Document baseline weakness, exact term misses, similarity with relevance guarantees, independent chunks, no decomposition, no quality gate, no correction and retrieval errors propagating to generation
+
+
+Run tests and five sample questions. Keep there version deliberately understandable 
