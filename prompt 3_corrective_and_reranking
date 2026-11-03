@@ -1,0 +1,19 @@
+Upgrade version 2 to version 3 reranked Corrective RAG. Preserve naive and hybrid modes and add RAG_MODE=corrective
+
+Pipeline question -> hybrid candidates -> cross encoder reranking -> retrieval quality grading —> accept, correct or abstain —> generation
+
+
+1> Retrieve 20 to 30 unique candidates through dense, BM25, RRF.
+2> Add a configurable Sentence Transformer cross-encoder. Score questions-chunks in batches, retain earlier scores and keep top 10. Allow reranking to be disables.
+3>Add a structured evidence grader returning verdict sufficient, ambiguous, conflicting or insufficient, confidence, missing aspects , conflicts and next actions
+4> The grader assesses evidence and most answer the healthcare question
+5> Implement bounded CRAG, generate on sufficient evidence, rewrite once only for ambiguous evidence, retrieve version evidence for conflicts, attempt one correction for insufficient evidence , then abstain
+6> Rewrite must preserve clinical terms, coders, numbers, units, medication names, negation and intent.
+7>Correct only against the approved local corpus. Define but disable any approved external source interface.
+8>Limit retrieval rounds, candidates, models calls , timeouts and token budgets
+9> Trace retrieval, reranking, grading, rewriting, correction, evidence selection and final decision.
+10> Expose CRAG path in streamlit
+11> Test reranking changes, correction triggers, sufficient evidence path, version conflicts , failed corrections , abstentions .
+12> Add architecture-corrective.md, a diagram and explanation of reranking versus retrieval.
+
+Run development set for naive, hybrid, hybrid plus reranking, hybrid plus reranking plus crag. Do not tune on the locked test set
